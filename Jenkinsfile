@@ -22,7 +22,7 @@ pipeline {
 
         stage('Docker Build and Push') {
             steps {
-              withDockerRegistry(credentialsId: "docker-hub") {
+              withDockerRegistry(credentialsId: "docker-hub", url: "") {
                 sh 'printenv'
                 sh 'docker build -t pawelpastuszka/public:kodekloud-numeric-app-""$GIT_COMMIT"" .'
                 sh 'docker push pawelpastuszka/public:kodekloud-numeric-app-""$GIT_COMMIT""'
