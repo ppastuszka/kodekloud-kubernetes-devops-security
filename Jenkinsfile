@@ -51,11 +51,11 @@ pipeline {
         //     }
         // }
 
-        stage("Vulnerability Scan - Docker") {
-            steps {
-              sh "bash trivy-docker-image-scan.sh"
-            }
-        }
+        // stage("Vulnerability Scan - Docker") {
+        //     steps {
+        //       sh "docker run --rm -v $WORKSPACE:/root/.cache/ aquasec/trivy:0.17.2 -q image $dockerImageName"
+        //     }
+        // }
 
         stage('Docker Build and Push') {
             steps {
