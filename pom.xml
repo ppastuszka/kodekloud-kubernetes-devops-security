@@ -92,6 +92,9 @@
 				<configuration>
 					<format>ALL</format>
 					<failBuildOnCVSS>10</failBuildOnCVSS>
+					<excludes>
+						<exclude>org.apache.logging.log4j/log4j-api@2.13.3</exclude>
+                    </excludes>
 				</configuration>
 			</plugin>
 		</plugins>
