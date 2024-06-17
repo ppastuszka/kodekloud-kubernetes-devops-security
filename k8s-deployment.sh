@@ -8,5 +8,5 @@ if [ $? -ne 0 ]; then
   kubectl -n default apply -f k8s_deployment_service.yaml
 else
   echo "deployment exists"
-  kubectl -n default set image deployment ${deploymentName} ${containerName}=${imageName} --record true
+  kubectl -n default set image deployment/${deploymentName} ${containerName}=${imageName} --record true
 fi
