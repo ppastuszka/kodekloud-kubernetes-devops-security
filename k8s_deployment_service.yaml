@@ -18,6 +18,16 @@ spec:
       containers:
       - image: replace
         name: devsecops-container
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+        resources:
+          limits:
+            cpu: "1"
+            memory: "512Mi"
+          requests:
+            cpu: "0.5"
+            memory: "256Mi"
 ---
 apiVersion: v1
 kind: Service
