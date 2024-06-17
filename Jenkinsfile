@@ -31,20 +31,26 @@ pipeline {
             }
         }
 
-        // stage('SonarQube SAST') {
-        //     tools {
-        //         jdk "jdk17" // the name you have given the JDK installation in Global Tool Configuration
-        //     }
-        //     steps {
-        //       withCredentials([string(credentialsId: 'sonarqube-token', variable: 'TOKEN')]) {
-        //         sh "mvn sonar:sonar \
-        //           -Dsonar.projectKey=numeric-application \
-        //           -Dsonar.projectName='numeric-application' \
-        //           -Dsonar.host.url=http://devsecops-poc.polandcentral.cloudapp.azure.com:9000 \
-        //           -Dsonar.token='$TOKEN'"
-        //         }
-        //     }
-        // }
+        stage('SonarQube SAST') {
+            tools {
+                jdk "jdk17" // the name you have given the JDK installation in Global Tool Configuration
+            }
+            steps {
+              withSonarQubeEnv('SonarQube') {
+                sh "mvn sonar:sonar \
+                  -Dsonar.projectKey=numeric-application \
+                  -Dsonar.projectName='numeric-application' \
+                  -Dsonar.host.url=http://devsecops-poc.polandcentral.cloudapp.azure.com:9000 \
+                  -Dsonar.login=sonarqube"
+                }
+                timeout(time: 2, unit: 'MINUTES') {
+                  script {
+                    waitForQualityGate abortPipeline: true
+                  }
+                }
+              }
+            }
+        }
 
         stage('Docker Build and Push') {
             steps {
