@@ -14,7 +14,7 @@ if [[ ! -z "$PORT" ]]; then
     echo "Increment test passed"
     exit 0
   else
-    echo "Increment test failed"
+    echo "Increment test failed, response: $response"
     exit 1
   fi;
 
