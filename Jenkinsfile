@@ -6,7 +6,7 @@ pipeline {
     containerName = "devsecops-container"
     serviceName = "devsecops-svc"
     imageName = "pawelpastuszka/public:kodekloud-numeric-app-$GIT_COMMIT"
-    appliacationURL = "http://devsecops-poc.polandcentral.cloudapp.azure.com"
+    applicationURL = "http://devsecops-poc.polandcentral.cloudapp.azure.com"
     applicationURI = "/increment/99"
   }
 
