@@ -32,6 +32,9 @@ pipeline {
         }
 
         stage('SonarQube SAST') {
+            tools {
+                jdk "jdk17" // the name you have given the JDK installation in Global Tool Configuration
+            }
             steps {
               withCredentials([string(credentialsId: 'sonarqube-token', variable: 'TOKEN')]) {
                 sh "mvn clean verify sonar:sonar \
