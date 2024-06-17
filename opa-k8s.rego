@@ -8,6 +8,6 @@ deny[msg] {
 
 deny[msg] {
     input.kind = "Deployment"
-    not input.spec.template.spec.containers[_].securityContext.runAsNonRoot = true
+    not input.spec.template.spec.containers[0].securityContext.runAsNonRoot = true
     msg = sprintf("Container in Deployment %s is not running as non-root", [input.metadata.name])
 }
