@@ -34,12 +34,12 @@ pipeline {
         stage('SonarQube SAST') {
             steps {
               withCredentials([string(credentialsId: 'sonarqube-token', variable: 'TOKEN')]) {
-              sh "mvn clean verify sonar:sonar \
-                -Dsonar.projectKey=numeric-application \
-                -Dsonar.projectName='numeric-application' \
-                -Dsonar.host.url=http://devsecops-poc.polandcentral.cloudapp.azure.com:9000 \
-                -Dsonar.token='$TOKEN'
-            }
+                sh "mvn clean verify sonar:sonar \
+                  -Dsonar.projectKey=numeric-application \
+                  -Dsonar.projectName='numeric-application' \
+                  -Dsonar.host.url=http://devsecops-poc.polandcentral.cloudapp.azure.com:9000 \
+                  -Dsonar.token='$TOKEN'"
+                }
             }
         }
 
