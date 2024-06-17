@@ -53,7 +53,15 @@ pipeline {
 
         stage("Vulnerability Scan - Docker") {
             steps {
-              sh "bash trivy-docker-image-scan.sh"
+              parallel (
+                "Trivy Scan": {
+                  sh "bash trivy-docker-image-scan.sh"
+                },
+                "OPA Conftest": {
+                  sh "docker run --rm -v $(pwd):/project openpolicyagent/conftest test --policy dockerfile-security.rego Dockerfile"
+                }
+              )
+
             }
         }
 
